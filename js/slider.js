@@ -7,16 +7,30 @@ wrap the app in a self-invoking anonymous function to prevent leakage of global 
 		
 		// bootstrap the app
 		init: function (config) {
-			console.log('app init');
 			this.cache(config);
+			this.createSlider();
+
+			return this;
 		},
 
 		cache: function (config) {
-			var slider = config.slider;
-			// this.callme(slider);
+			this.slider = config.slider;
+			this.logger(slider);
 		},
 
-		callme: function (msg) {
+		createSlider: function () {
+			var self = CloudCalc;
+			
+			self.slider.slider({
+				range: "min",
+			 	value: 50,
+			 	min: 10,
+			 	max: 100,
+			 	step: 10
+			 })	
+		},
+
+		logger: function (msg) {
 			console.log(msg);	
 		}
 
@@ -26,5 +40,4 @@ wrap the app in a self-invoking anonymous function to prevent leakage of global 
 	window.CloudCalc = CloudCalc.init({
 		slider: $('#slider') 
 	});
-
 })(jQuery);
