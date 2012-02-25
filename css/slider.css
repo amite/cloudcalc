@@ -1,0 +1,87 @@
+#container, #message {
+padding:100px 50px 0px 50px;
+margin: 0 auto;
+}
+
+#message {
+	width:300px;
+	padding:5px;
+	text-align:center;
+	background:#332E2E;
+	border: 1px #414345 solid;
+  -webkit-border-radius: 4px; 
+  -moz-border-radius: 4px; 
+  border-radius: 4px; 
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+
+	
+  -webkit-box-shadow: 3px 2px 4px #332E2E; 
+     -moz-box-shadow: 0px 0px 4px #332E2E; 
+          box-shadow: 0px 0px 4px #332E2E; 
+					display:none;
+}
+
+/*the slider background*/
+.slider {
+width:230px;
+height:11px;
+background:url(../img/slider-bg.png);
+position:relative;
+margin:0;
+padding:0 10px;
+margin:0 auto;
+}
+
+/*Style for the slider button*/
+.ui-slider-handle {
+width:24px;
+height:24px;
+position:absolute;
+top:-7px;
+margin-left:-12px;
+z-index:200;
+background:url(../img/slider-button.png);
+}
+
+/*Result div where the slider value is displayed*/
+#slider-result, h2, p, #message {
+font-size:35px;
+height:40px;
+font-family:Arial, Helvetica, sans-serif;
+color:#4B7B94;
+width:250px;
+text-align:center;
+text-shadow:0 1px 1px #000;
+font-weight:700;
+padding:20px 0;
+margin:0 auto;
+}
+
+h2, p, #message {
+	height:auto;
+}
+
+p, #message {
+	font-size:15px;
+	color: white;
+	margin-bottom:-15px;
+	line-height:1.5em;	
+}
+
+/*This is the fill bar colour*/
+.ui-widget-header {
+background:url(../img/fill.png) no-repeat left;
+height:8px;
+left:1px;
+top:1px;
+position:absolute;
+}
+
+a {
+outline:none;
+-moz-outline-style:none;
+}
+
+body {
+	background:#30333c url(../img/bg.jpg)!important;
+}
