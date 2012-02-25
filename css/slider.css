@@ -22,7 +22,7 @@ margin: 0 auto;
 }
 
 /*the slider background*/
-.slider {
+#slider {
 width:230px;
 height:11px;
 background:url(../img/slider-bg.png);
