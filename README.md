@@ -12,3 +12,5 @@ Done!
 Done!
 
 ## Start pulling json assets
+
+http://localhost:8888/cloudcalc/json/Plans_JSON_file.json

@@ -8,9 +8,15 @@ with global variables
 		
 		// bootstrap the app
 		init: function (config) {
+			// setup basic vars and ui
 			this.cache(config);
 			this.createSlider();
-			this.setSliderOutputValue();
+			
+			// setup data
+			this.fetchPlanData();
+			this.bindEvents();
+			this.subscriptions();
+			
 			return this;
 		},
 
@@ -23,6 +29,34 @@ with global variables
 			this.anim = config.animate;
 
 			// this.logger(config.output);
+		},
+
+		// this is where I bind all slide events
+		bindEvents: function() {
+			// hold on to the value of this
+			var self = CloudCalc;
+
+			self.sl.slider({
+				slide: function ( event, ui ) {
+					self.setSliderOutputValue();	
+				}
+			});			
+		},
+
+		fetchPlanData: function () {
+			
+			return $.getJSON( 'json/Plans_JSON_file.json', function( data ) {
+				CloudCalc.data = data.Response.Plans.Plan;
+				$.publish( 'plan/results' );				
+			});
+		},
+
+		subscriptions: function () {
+			$.subscribe( 'plan/results', this.parseJSON );
+		},
+
+		parseJSON: function () {
+			console.log(CloudCalc.data);
 		},
 
 		createSlider: function () {
