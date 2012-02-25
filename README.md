@@ -12,5 +12,9 @@ Done!
 Done!
 
 ## Start pulling json assets
+Done!
 
-http://localhost:8888/cloudcalc/json/Plans_JSON_file.json
+## SETUP pub sub event hooks
+Done!
+
+## Start parsing JSON data
