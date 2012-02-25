@@ -59,7 +59,7 @@ with global variables
 
 	}; //end of CloudCalc
 
-	// kick things off
+	// kick things off by passing in config values
 	window.CloudCalc = CloudCalc.init({
 		slider: $('#slider'),
 		output: $('#slider-result'),
