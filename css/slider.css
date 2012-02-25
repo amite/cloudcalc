@@ -43,6 +43,15 @@ z-index:200;
 background:url(../img/slider-button.png);
 }
 
+/*This is the fill bar colour*/
+#slider .ui-slider {
+background:url(../img/fill.png) no-repeat left;
+height:8px;
+left:1px;
+top:1px;
+position:absolute;
+}
+
 /*Result div where the slider value is displayed*/
 #slider-result, h2, p, #message {
 font-size:35px;
@@ -68,14 +77,7 @@ p, #message {
 	line-height:1.5em;	
 }
 
-/*This is the fill bar colour*/
-.ui-widget-header {
-background:url(../img/fill.png) no-repeat left;
-height:8px;
-left:1px;
-top:1px;
-position:absolute;
-}
+
 
 a {
 outline:none;
