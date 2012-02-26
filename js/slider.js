@@ -51,7 +51,10 @@ with global variables
 		},
 
 		subscriptions: function () {
-			$.subscribe( 'plan/results', this.parseJSON );				
+			$.subscribe( 'plan/results', this.parseJSON );		
+			$.subscribe( 'slider/moved', this.setVMval );
+			$.subscribe( 'slider/moved', this.setRAMval );
+			$.subscribe( 'slider/moved', this.setHDval );			
 		},
 
 		parseJSON: function () {
@@ -77,7 +80,20 @@ with global variables
 			var self = CloudCalc;
 
 			// show the ui output value on slide event
-			self.output.html( ui.value + " INSTANCE");	
+			self.output.html( ui.value + " INSTANCE");
+			$.publish('slider/moved')	
+		},
+
+		setVMval: function () {
+			console.log('changed VM val');	
+		},
+
+		setRAMval: function () {
+			console.log('changed RAM val');	
+		},
+
+		setHDval: function () {
+			console.log('changed HD val');	
 		},
 
 		logger: function (msg) {
