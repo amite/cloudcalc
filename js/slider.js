@@ -40,7 +40,8 @@ with global variables
 
 		
 		subscriptions: function () {
-			$.subscribe( 'plan/results', this.parseJSON );		
+			// $.subscribe( 'plan/results', this.setVMval );
+
 			
 			$.subscribe( 'slider/moved', this.setVMval );
 			$.subscribe( 'slider/moved', this.setRAMval );
@@ -60,6 +61,8 @@ with global variables
 		},
 
 		fetchPlanData: function () {
+			// hold on to the value of this
+			var self = CloudCalc;
 			
 			return $.getJSON( 'json/Plans_JSON_file.json', function( data ) {
 				CloudCalc.data = data.Response.Plans.Plan;
@@ -130,8 +133,13 @@ with global variables
 			});
 		},
 
-		updateTotal: function () {
-				
+		updateTotal: function (step) {
+			// hold on to the value of this
+			var self = CloudCalc;			
+			
+			$.each(self.data, function(obj, idx) {
+				self.totVal.text(self.data[step].PlanCost + self.data[step].SetupCost );	
+			});	
 		},
 
 		logger: function (msg) {
