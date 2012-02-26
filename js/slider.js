@@ -39,7 +39,7 @@ with global variables
 			var self = CloudCalc;
 			
 			// bind the slider's slide event to a data event
-			self.sl.on('slide', this.setSliderOutputValue);				
+			self.sl.on('slide', this.setSliderOutputValue );				
 		},
 
 		fetchPlanData: function () {
@@ -51,7 +51,7 @@ with global variables
 		},
 
 		subscriptions: function () {
-			$.subscribe( 'plan/results', this.parseJSON );			
+			$.subscribe( 'plan/results', this.parseJSON );				
 		},
 
 		parseJSON: function () {
