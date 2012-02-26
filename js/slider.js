@@ -37,12 +37,9 @@ with global variables
 		bindEvents: function() {
 			// hold on to the value of this
 			var self = CloudCalc;
-
-			self.sl.slider({
-				start: function ( event, ui ) {
-					self.setSliderOutputValue();	
-				}
-			});			
+			
+			self.setSliderOutputValue();	
+				
 		},
 
 		fetchPlanData: function () {
