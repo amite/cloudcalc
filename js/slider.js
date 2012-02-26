@@ -12,13 +12,13 @@ with global variables
 			this.cache(config);
 			this.createSlider();
 			
-			// bind change events
-			this.bindEvents();
-
 			// setup data
 			this.fetchPlanData();
 			this.subscriptions();
-			
+		
+			// bind change events
+			this.bindEvents();
+
 			return this;
 		},
 
@@ -38,8 +38,8 @@ with global variables
 			// hold on to the value of this
 			var self = CloudCalc;
 			
-			self.setSliderOutputValue();	
-				
+			// bind the slider's slide event to a data event
+			self.sl.on('slide', this.setSliderOutputValue);				
 		},
 
 		fetchPlanData: function () {
@@ -51,7 +51,7 @@ with global variables
 		},
 
 		subscriptions: function () {
-			$.subscribe( 'plan/results', this.parseJSON );
+			$.subscribe( 'plan/results', this.parseJSON );			
 		},
 
 		parseJSON: function () {
@@ -72,18 +72,12 @@ with global variables
 			return self;			
 		},
 
-		setSliderOutputValue: function () {
+		setSliderOutputValue: function (event, ui) {
 			// hold on to the value of this
 			var self = CloudCalc;
 
 			// show the ui output value on slide event
-			self.sl.slider({
-				slide: function ( event, ui ) {
-					self.output.html( ui.value + " INSTANCE");	
-				}
-			});
-
-			return self;	
+			self.output.html( ui.value + " INSTANCE");	
 		},
 
 		logger: function (msg) {
