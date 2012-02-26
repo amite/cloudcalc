@@ -12,9 +12,11 @@ with global variables
 			this.cache(config);
 			this.createSlider();
 			
+			// bind change events
+			this.bindEvents();
+
 			// setup data
 			this.fetchPlanData();
-			this.bindEvents();
 			this.subscriptions();
 			
 			return this;
@@ -37,7 +39,7 @@ with global variables
 			var self = CloudCalc;
 
 			self.sl.slider({
-				slide: function ( event, ui ) {
+				start: function ( event, ui ) {
 					self.setSliderOutputValue();	
 				}
 			});			
