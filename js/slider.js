@@ -29,8 +29,25 @@ with global variables
 			this.minVal = config.min;
 			this.maxVal = config.max;
 			this.anim = config.animate;
+			
+			this.VMval = $('#VM');
+			this.RAMval = $('#RAM');
+			this.HDval = $('#HD');
+			this.BDval = $('#BD');
 
-			// this.logger(config.output);
+			this.totVal = $('#TOT');			
+		},
+
+		
+		subscriptions: function () {
+			$.subscribe( 'plan/results', this.parseJSON );		
+			
+			$.subscribe( 'slider/moved', this.setVMval );
+			$.subscribe( 'slider/moved', this.setRAMval );
+			$.subscribe( 'slider/moved', this.setHDval );
+			$.subscribe( 'slider/moved', this.setBDval );
+
+			$.subscribe( 'slider/moved', this.updateTotal );			
 		},
 
 		// this is where I bind all slide events
@@ -50,15 +67,8 @@ with global variables
 			});
 		},
 
-		subscriptions: function () {
-			$.subscribe( 'plan/results', this.parseJSON );		
-			$.subscribe( 'slider/moved', this.setVMval );
-			$.subscribe( 'slider/moved', this.setRAMval );
-			$.subscribe( 'slider/moved', this.setHDval );			
-		},
-
 		parseJSON: function () {
-			console.log(CloudCalc.data);
+			// console.log(CloudCalc.data);
 		},
 
 		createSlider: function () {
@@ -81,19 +91,47 @@ with global variables
 
 			// show the ui output value on slide event
 			self.output.html( ui.value + " INSTANCE");
-			$.publish('slider/moved')	
+			
+			// publish the slider moved event and pass in the 
+			// current step value which should be 0
+			$.publish('slider/moved', [ui.value - 1]);
+
 		},
 
-		setVMval: function () {
-			console.log('changed VM val');	
+		setVMval: function (step) {
+			// hold on to the value of this
+			var self = CloudCalc;			
+			$.each(self.data, function(obj, idx) {
+				self.VMval.text(self.data[step].Cpu);	
+			});
 		},
 
-		setRAMval: function () {
-			console.log('changed RAM val');	
+		setRAMval: function (step) {
+			// hold on to the value of this
+			var self = CloudCalc;			
+			$.each(self.data, function(obj, idx) {
+				self.RAMval.text(self.data[step].Ram);	
+			});	
 		},
 
-		setHDval: function () {
-			console.log('changed HD val');	
+		setHDval: function (step) {
+			// hold on to the value of this
+			var self = CloudCalc;			
+			$.each(self.data, function(obj, idx) {
+				self.HDval.text(self.data[step].Disk);	
+			});	
+		},
+
+		setBDval: function (step) {
+			// hold on to the value of this
+			var self = CloudCalc;			
+			$.each(self.data, function(obj, idx) {
+				self.BDval.text(self.data[step].Bandwidth);	
+			});
+		},
+
+		updateTotal: function () {
+				
 		},
 
 		logger: function (msg) {
