@@ -34,20 +34,20 @@ with global variables
 			this.RAMval = $('#RAM');
 			this.HDval = $('#HD');
 			this.BDval = $('#BD');
-
+			
 			this.totVal = $('#TOT');			
 		},
 
 		
 		subscriptions: function () {
-			// $.subscribe( 'plan/results', this.setVMval );
+			$.subscribe( 'plan/results', this.setVMval );
 
 			
 			$.subscribe( 'slider/moved', this.setVMval );
 			$.subscribe( 'slider/moved', this.setRAMval );
 			$.subscribe( 'slider/moved', this.setHDval );
 			$.subscribe( 'slider/moved', this.setBDval );
-
+			
 			$.subscribe( 'slider/moved', this.updateTotal );			
 		},
 
@@ -63,10 +63,11 @@ with global variables
 		fetchPlanData: function () {
 			// hold on to the value of this
 			var self = CloudCalc;
-			
+
 			return $.getJSON( 'json/Plans_JSON_file.json', function( data ) {
 				CloudCalc.data = data.Response.Plans.Plan;
-				$.publish( 'plan/results' );				
+				$.publish( 'plan/results', [self.sl.slider("value") - 1] );
+				// console.dir(self.sl.slider("value"));				
 			});
 		},
 
